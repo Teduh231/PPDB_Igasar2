@@ -1,0 +1,107 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+body {
+  background: #f4f4f4;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  padding-top: 100px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.top-section {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.daftar-btn {
+  background-color: #2978B5;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.daftar-btn:hover {
+  background-color: #195a8f;
+}
+
+.content {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.left-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 280px;
+}
+
+.kontak-sekolah,
+.panitia-ppdb {
+  border: 2px solid #2F539B;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.kontak-sekolah h3,
+.panitia-ppdb h3 {
+  background-color: #2F539B;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.panitia-ppdb ul {
+  list-style: none;
+}
+
+.panitia-ppdb li {
+  border-bottom: 1px solid #000;
+  padding: 5px 0;
+}
+
+.pengumuman {
+  flex: 2;
+  min-width: 300px;
+  border: 2px solid #2F539B;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.pengumuman h3 {
+  background-color: #2F539B;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.pengumuman-content {
+  min-height: 300px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #fafafa;
+}
