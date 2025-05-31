@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login PPDB - SMK Igasar Pindad</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <div class="login-container">
         <div class="academic-year">TA 2025/2026</div>
-        
+
         <div class="school-header">
             <div class="logo-container">
                 <div class="logo">
@@ -28,26 +31,15 @@
         <form action="login_process.php" method="POST" id="loginForm">
             <div class="form-group">
                 <label for="user" class="form-label">Email atau Username</label>
-                <input type="text" 
-                       id="user" 
-                       name="user" 
-                       class="form-input" 
-                       placeholder="Masukkan email atau username" 
-                       required
-                       autocomplete="username">
+                <input type="text" id="user" name="user" class="form-input" placeholder="Masukkan email atau username"
+                    required autocomplete="username">
             </div>
 
             <div class="form-group">
                 <label for="pass" class="form-label">Password</label>
-                <input type="password" 
-                       id="pass" 
-                       name="pass" 
-                       class="form-input" 
-                       placeholder="Masukkan password" 
-                       required
-                       autocomplete="current-password">
+                <input type="password" id="pass" name="pass" class="form-input" placeholder="Masukkan password" required
+                    autocomplete="current-password">
             </div>
-            <div> <a href="#" class="forgot-link">Lupa Password?</a></div>
 
             <button type="submit" class="login-button" id="loginBtn">
                 Masuk ke Portal PPDB
@@ -56,12 +48,12 @@
 
         <div class="form-footer">
             <div class="footer-links">
-                <a href="#" class="register-link">Daftar Akun</a>
+                <a href="register.php" class="register-link">Daftar Akun</a>
             </div>
         </div>
     </div>
 
-     <style>
+    <style>
         * {
             margin: 0;
             padding: 0;
@@ -315,15 +307,15 @@
                 margin: 16px;
                 max-width: none;
             }
-            
+
             .school-name {
                 font-size: 22px;
             }
-            
+
             .form-title {
                 font-size: 24px;
             }
-            
+
             .academic-year {
                 position: static;
                 display: block;
@@ -353,8 +345,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         /* Focus styles for accessibility */
@@ -368,19 +365,19 @@
     </style>
 
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
             const btn = document.getElementById('loginBtn');
             btn.classList.add('loading');
             btn.disabled = true;
         });
 
         // Simple fade-in animation
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             const container = document.querySelector('.login-container');
             container.style.opacity = '0';
             container.style.transform = 'translateY(10px)';
             container.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-            
+
             requestAnimationFrame(() => {
                 container.style.opacity = '1';
                 container.style.transform = 'translateY(0)';
@@ -388,4 +385,5 @@
         });
     </script>
 </body>
+
 </html>

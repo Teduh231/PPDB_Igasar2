@@ -1,14 +1,26 @@
 <?php
-
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 // Koneksi ke database
 $conn = new mysqli("localhost", "root", "", "ppdb_igasar");
 $panitia = [];
+$pengumuman = [];
 if (!$conn->connect_error) {
+    // Ambil panitia
     $sql = "SELECT nama_panitia, foto FROM panitia_ppdb WHERE aktif=1";
     $result = $conn->query($sql);
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $panitia[] = $row;
+        }
+    }
+    // Ambil pengumuman
+    $sql_pengumuman = "SELECT * FROM pengumuman ORDER BY tanggal DESC";
+    $result_pengumuman = $conn->query($sql_pengumuman);
+    if ($result_pengumuman && $result_pengumuman->num_rows > 0) {
+        while ($row = $result_pengumuman->fetch_assoc()) {
+            $pengumuman[] = $row;
         }
     }
     $conn->close();
@@ -22,8 +34,6 @@ if (!$conn->connect_error) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PPDB Igasar Pindad Bandung</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-
-
 </head>
 
 <body>
@@ -37,7 +47,7 @@ if (!$conn->connect_error) {
             <p class="hero-subtitle">Penerimaan Peserta Didik Baru Tahun Ajaran 2025/2026</p>
         </div>
         <div class="top-section">
-            <?php if (empty($_SESSION['user_logged_in'])): ?>
+            <?php if (!isset($_SESSION['user_id'])): ?>
                 <a href="register.php"><button class="main-btn">Registrasi</button></a>
                 <a href="login.php"><button class="main-btn">Login</button></a>
             <?php endif; ?>
@@ -116,16 +126,26 @@ if (!$conn->connect_error) {
                     <h3 class="card-title">Pengumuman PPDB</h3>
                 </div>
                 <div class="pengumuman-content">
-                    <img src="img/ppdb_benner.png" alt="PPDB SMK IGASAR PINDAD 2025/2026" class="pengumuman-image">
+                    <?php if (count($pengumuman) > 0): ?>
+                        <?php foreach ($pengumuman as $p): ?>
+                            <div class="announcement-card" style="margin-bottom: 1.5rem;">
+                                <div class="announcement-title" style="font-weight:bold;"><?= htmlspecialchars($p['judul']) ?></div>
+                                <div class="announcement-date" style="font-size:12px;color:#888;margin-bottom:6px;">
+                                    <i class="fas fa-calendar"></i> <?= date('d M Y H:i', strtotime($p['tanggal'])) ?>
+                                </div>
+                                <?php if (!empty($p['foto'])): ?>
+                                    <img class="foto-pengumuman" src="data:image/jpeg;base64,<?= base64_encode($p['foto']) ?>" alt="Foto Pengumuman" style="max-width:180px;max-height:180px;border-radius:8px;margin-bottom:10px;">
+                                <?php endif; ?>
+                                <div class="announcement-content"><?= nl2br(htmlspecialchars($p['isi'])) ?></div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
     </div>
 </body>
-
-
-
-
 </html>
 
 <style>
@@ -299,18 +319,39 @@ if (!$conn->connect_error) {
         padding: 1rem;
     }
 
-    .pengumuman-image {
-        width: 100%;
-        max-width: 600px;
-        height: auto;
-        border-radius: 12px;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
+    .announcement-card {
+        margin-bottom: 2.5rem !important;
     }
 
-    .pengumuman-image:hover {
-        transform: scale(1.02);
-        box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+    .foto-pengumuman {
+        max-width: 350px !important;
+        max-height: 350px !important;
+        border-radius: 12px !important;
+        margin-bottom: 18px !important;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .announcement-title {
+        font-size: 2rem !important;
+        font-weight: bold;
+        color: #1e293b;
+        margin-bottom: 10px;
+    }
+
+    .announcement-date {
+        font-size: 1.1rem !important;
+        color: #64748b !important;
+        margin-bottom: 12px !important;
+    }
+
+    .announcement-content {
+        font-size: 1.25rem !important;
+        color: #334155;
+        margin-top: 10px;
+        line-height: 1.7;
     }
 
     .accent-gradient {

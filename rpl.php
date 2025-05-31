@@ -1,5 +1,6 @@
 <?php include 'header.php'; ?>
 <?php
+session_start();
 // Koneksi ke database
 $conn = new mysqli("localhost", "root", "", "ppdb_igasar");
 $images = [];
@@ -148,6 +149,63 @@ if (!$conn->connect_error) {
     .carousel-controls button:hover {
       background-color: rgba(0, 0, 0, 0.8);
     }
+
+    .admin-action {
+      margin: 10px 0;
+      text-align: center;
+    }
+
+    .admin-action form {
+      display: inline-block;
+      margin: 0 5px;
+    }
+
+    .admin-action button {
+      background: #e11d48;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 6px 14px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .admin-action button.add-btn {
+      background: #2563eb;
+    }
+
+    .admin-action button.add-btn:hover {
+      background: #1d4ed8;
+    }
+
+    .admin-action button:hover {
+      background: #be123c;
+    }
+
+    .gallery-item {
+      position: relative;
+    }
+
+    .delete-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #e11d48;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      font-size: 18px;
+      cursor: pointer;
+      z-index: 2;
+      opacity: 0.85;
+    }
+
+    .delete-btn:hover {
+      background: #be123c;
+      opacity: 1;
+    }
   </style>
 </head>
 
@@ -198,9 +256,26 @@ if (!$conn->connect_error) {
       </section>
       <section class="foto-section">
         <h3 class="section-title">Galeri Kegiatan</h3>
+
+        <?php if (isset($_SESSION['level']) && $_SESSION['level'] === 'admin'): ?>
+        <div class="admin-action">
+          <!-- Form tambah foto -->
+          <form method="POST" enctype="multipart/form-data" action="upload_rpl_image.php">
+            <input type="file" name="image" accept="image/*" required>
+            <button type="submit" class="add-btn">Tambah Foto</button>
+          </form>
+        </div>
+        <?php endif; ?>
+
         <div class="gallery-container">
           <?php foreach ($images as $index => $image): ?>
             <div class="gallery-item <?php echo $index === 0 ? 'active' : ''; ?>">
+              <?php if (isset($_SESSION['level']) && $_SESSION['level'] === 'admin'): ?>
+                <form method="POST" action="hapus_rpl_image.php" onsubmit="return confirm('Hapus foto ini?');">
+                  <input type="hidden" name="id_image" value="<?= $image['id_image'] ?>">
+                  <button type="submit" class="delete-btn" title="Hapus Foto">&times;</button>
+                </form>
+              <?php endif; ?>
               <img src="data:image/jpeg;base64,<?php echo base64_encode($image['image']); ?>"
                 alt="Kegiatan <?php echo $image['id_image']; ?>">
             </div>

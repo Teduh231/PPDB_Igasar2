@@ -14,49 +14,51 @@
       <h2 style="font-size: 22px; margin-bottom: 6px; font-weight: 600; color: #222;">Peserta PPDB</h2>
       <p style="font-size: 14px; color: #666; margin: 0;">Tolong isi data diri peserta</p>
     </div>
-    <div style="padding: 24px 32px;">
-      <div style="margin-bottom: 16px;">
-        <label for="nis" style="font-size: 14px; color: #444; margin-bottom: 6px; display: block;">NIS</label>
-        <input type="text" id="nis" placeholder="NIS Peserta" style="width: 90%; padding: 10px 14px; font-size: 14px; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); outline: none;" />
-      </div>
-      <div style="margin-bottom: 16px;">
-        <label for="nama" style="font-size: 14px; color: #444; margin-bottom: 6px; display: block;">Nama Peserta</label>
-        <input type="text" id="nama" placeholder="Nama" style="width: 90%; padding: 10px 14px; font-size: 14px; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); outline: none;" />
-      </div>
-      <div style="margin-bottom: 16px;">
-        <label for="email" style="font-size: 14px; color: #444; margin-bottom: 6px; display: block;">Email</label>
-        <input type="email" id="email" placeholder="Email" style="width: 90%; padding: 10px 14px; font-size: 14px; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); outline: none;" />
-      </div>
-      <div style="margin-bottom: 16px;">
-        <label for="telepon" style="font-size: 14px; color: #444; margin-bottom: 6px; display: block;">No-Telepon</label>
-        <input type="text" id="telepon" placeholder="No-Telepon" style="width: 90%; padding: 10px 14px; font-size: 14px; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); outline: none;" />
-      </div>
-      <div style="margin-bottom: 16px;">
-        <label for="rata" style="font-size: 14px; color: #444; margin-bottom: 6px; display: block;">Rata-Rata</label>
-        <input type="text" id="rata" placeholder="Rata-Rata" style="width: 90%; padding: 10px 14px; font-size: 14px; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); outline: none;" />
-      </div>
-      <div style="margin-bottom: 16px;">
-        <label for="jurusan" style="font-size: 14px; color: #444; margin-bottom: 6px; display: block;">Pilihan Jurusan</label>
-        <select id="jurusan" style="width: 50%; padding: 10px 14px; font-size: 14px; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); outline: none;">
-          <option value="TKR">Teknik Kendaraan Ringan</option>
-          <option value="TBSM">Teknik Bisnis Sepeda Motor</option>
-          <option value="TP">Teknik Permesinan</option>
-          <option value="TKJ">Teknik Komputer dan Jaringan</option>
-          <option value="RPL">Rekayasa Perangkat Lunak</option>
-        </select>
-      </div>
-      <div style="margin-bottom: 16px;">
-        <label style="font-size: 14px; color: #444; margin-bottom: 6px; display: block;">Surat Kelulusan</label>
-        <div id="upload-container" style="text-align: center; border: 2px dashed #ccc; border-radius: 8px; padding: 24px; background-color: #fefefe; position: relative;">
-          <i class="fa fa-cloud-upload" style="font-size: 40px; color: #888;"></i>
-          <p style="font-size: 14px; color: #666; margin: 10px 0;">Upload atau drop<br />Foto Surat Kelulusan</p>
-          <input type="file" id="upload-file" accept="image/*" style="display: none;" />
-          <label for="upload-file" id="upload-label" style="display: inline-block; padding: 6px 16px; margin-top: 10px; background-color: #007bff; color: white; border-radius: 6px; cursor: pointer; font-size: 14px;">Upload</label>
-          <img id="preview-image" src="" alt="Preview" style="display: none; margin-top: 16px; max-width: 100%; border-radius: 8px;" />
+    <form method="POST" action="proses_pendaftaran.php" enctype="multipart/form-data">
+      <div style="padding: 24px 32px;">
+        <div style="margin-bottom: 16px;">
+          <label for="nis" style="font-size: 14px; color: #444; margin-bottom: 6px; display: block;">NIS</label>
+          <input type="text" id="nis" name="nis" placeholder="NIS Peserta" style="width: 90%; padding: 10px 14px; font-size: 14px; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); outline: none;" />
         </div>
+        <div style="margin-bottom: 16px;">
+          <label for="nama" style="font-size: 14px; color: #444; margin-bottom: 6px; display: block;">Nama Peserta</label>
+          <input type="text" id="nama" name="nama" placeholder="Nama" style="width: 90%; padding: 10px 14px; font-size: 14px; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); outline: none;" />
+        </div>
+        <div style="margin-bottom: 16px;">
+          <label for="email" style="font-size: 14px; color: #444; margin-bottom: 6px; display: block;">Email</label>
+          <input type="email" id="email" name="email" placeholder="Email" style="width: 90%; padding: 10px 14px; font-size: 14px; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); outline: none;" />
+        </div>
+        <div style="margin-bottom: 16px;">
+          <label for="telepon" style="font-size: 14px; color: #444; margin-bottom: 6px; display: block;">No-Telepon</label>
+          <input type="text" id="telepon" name="telepon" placeholder="No-Telepon" style="width: 90%; padding: 10px 14px; font-size: 14px; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); outline: none;" />
+        </div>
+        <div style="margin-bottom: 16px;">
+          <label for="rata" style="font-size: 14px; color: #444; margin-bottom: 6px; display: block;">Rata-Rata</label>
+          <input type="text" id="rata" name="rata" placeholder="Rata-Rata" style="width: 90%; padding: 10px 14px; font-size: 14px; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); outline: none;" />
+        </div>
+        <div style="margin-bottom: 16px;">
+          <label for="jurusan" style="font-size: 14px; color: #444; margin-bottom: 6px; display: block;">Pilihan Jurusan</label>
+          <select id="jurusan" name="jurusan" style="width: 50%; padding: 10px 14px; font-size: 14px; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); outline: none;">
+            <option value="TKR">Teknik Kendaraan Ringan</option>
+            <option value="TBSM">Teknik Bisnis Sepeda Motor</option>
+            <option value="TP">Teknik Permesinan</option>
+            <option value="TKJ">Teknik Komputer dan Jaringan</option>
+            <option value="RPL">Rekayasa Perangkat Lunak</option>
+          </select>
+        </div>
+        <div style="margin-bottom: 16px;">
+          <label style="font-size: 14px; color: #444; margin-bottom: 6px; display: block;">Surat Kelulusan</label>
+          <div id="upload-container" style="text-align: center; border: 2px dashed #ccc; border-radius: 8px; padding: 24px; background-color: #fefefe; position: relative;">
+            <i class="fa fa-cloud-upload" style="font-size: 40px; color: #888;"></i>
+            <p style="font-size: 14px; color: #666; margin: 10px 0;">Upload atau drop<br />Foto Surat Kelulusan</p>
+            <input type="file" id="upload-file" name="surat_kelulusan" accept="image/*" style="display: none;" />
+            <label for="upload-file" id="upload-label" style="display: inline-block; padding: 6px 16px; margin-top: 10px; background-color: #007bff; color: white; border-radius: 6px; cursor: pointer; font-size: 14px;">Upload</label>
+            <img id="preview-image" src="" alt="Preview" style="display: none; margin-top: 16px; max-width: 100%; border-radius: 8px;" />
+          </div>
+        </div>
+        <button type="submit" style="display: block; width: 100%; padding: 14px; margin-top: 20px; background-color: #007bff; color: #fff; font-size: 16px; font-weight: bold; border: none; border-radius: 8px; cursor: pointer;">KIRIM</button>
       </div>
-      <button style="display: block; width: 100%; padding: 14px; margin-top: 20px; background-color: #007bff; color: #fff; font-size: 16px; font-weight: bold; border: none; border-radius: 8px; cursor: pointer;">KIRIM</button>
-    </div>
+    </form>
   </div>
 
   <script>

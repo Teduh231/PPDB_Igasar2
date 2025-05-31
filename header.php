@@ -1,4 +1,5 @@
-<?php if (session_status() === PHP_SESSION_NONE) session_start(); ?>
+<?php if (session_status() === PHP_SESSION_NONE)
+    session_start(); ?>
 <!DOCTYPE html>
 <html lang="id">
 
@@ -337,7 +338,11 @@
                 <?php if (isset($_SESSION['user_level']) && $_SESSION['user_level'] === 'admin'): ?>
                     <a href="data_peserta.php" class="nav-link peserta">
                         <i class="fas fa-cog"></i>
-                        Data Peserta
+                        Peserta
+                    </a>
+                    <a href="data_pendaftar.php" class="nav-link peserta">
+                        <i class="fas fa-cog"></i>
+                        Pendaftar
                     </a>
                     <a href="admin_panel.php" class="nav-link admin">
                         <i class="fas fa-cog"></i>
